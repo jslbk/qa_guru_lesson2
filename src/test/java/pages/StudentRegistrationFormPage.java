@@ -11,6 +11,9 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class StudentRegistrationFormPage {
 
+    private static final String BIRTHDAY_YEAR = "1994";
+    private static final String BIRTHDAY_MONTH = "October";
+    private static final String BIRTHDAY_DAY = "20";
     private final SelenideElement
 
             firstNameLocator = $("#firstName"),
@@ -21,10 +24,15 @@ public class StudentRegistrationFormPage {
             genderLocator = $("#genterWrapper"),
             submitButtonLocator = $("#submit"),
             resultTableLocator = $(".modal-content"),
-            dateInputLocator = $("#dateOfBirthInput");
+            dateInputLocator = $("#dateOfBirthInput"),
+            subjectLocator = $("#subjectsContainer"),
+            subjectInputLocator = $(".subjects-auto-complete__input input"),
+            stateLocator = $("#state"),
+            stateInputLocator = $("#state input"),
+            cityLocator = $("#city"),
+            cityInputLocator = $("#state input");
 
     CalendarComponent calendarComponent = new CalendarComponent();
-
     UploadFileComponent uploadFileComponent = new UploadFileComponent();
 
     public StudentRegistrationFormPage setFirstName(String name) {
@@ -46,21 +54,20 @@ public class StudentRegistrationFormPage {
     }
 
     public StudentRegistrationFormPage setSubjects(String subjectValue) {
-        $("#subjectsContainer").click();
-        $(".subjects-auto-complete__input input").setValue(subjectValue).pressEnter();
+        subjectLocator.click();
+        subjectInputLocator.setValue(subjectValue).pressEnter();
 
         return this;
     }
 
     public StudentRegistrationFormPage selectStateFromDropdown(String state, String city) {
-        $("#state").click();
-        $("#state input").setValue(state).pressEnter();
-        $("#city").click();
-        $("#city input").setValue(city).pressEnter();
+        stateLocator.click();
+        stateInputLocator.setValue(state).pressEnter();
+        cityLocator.click();
+        cityInputLocator.setValue(city).pressEnter();
 
         return this;
     }
-
 
     public StudentRegistrationFormPage setHobbies(String typeOfHobby) {
         $x("//label[text()='" + typeOfHobby + "']").click();
@@ -68,10 +75,10 @@ public class StudentRegistrationFormPage {
         return this;
     }
 
-    public StudentRegistrationFormPage setDateOfBirth(String dateOfBirth) {
+    public StudentRegistrationFormPage setDateOfBirth() {
         // Click the date input field to open the date picker
         $(dateInputLocator).click();
-        calendarComponent.setDate(dateOfBirth);
+        calendarComponent.setDate(BIRTHDAY_YEAR, BIRTHDAY_MONTH, BIRTHDAY_DAY);
 
         return this;
     }
@@ -102,7 +109,6 @@ public class StudentRegistrationFormPage {
 
     public void clickSubmitButton() {
         submitButtonLocator.click();
-
     }
 
     public void checkResultTableIsDisplayed() {
@@ -114,7 +120,7 @@ public class StudentRegistrationFormPage {
     }
 
     public StudentRegistrationFormPage uploadFile(String image) {
-        uploadFileComponent.uploadFile(image);
+        uploadFileComponent.uploadPicture(image);
 
         return this;
     }
@@ -122,4 +128,5 @@ public class StudentRegistrationFormPage {
     public int getRequiredFieldsCount() {
         return $$("[required]").size();
     }
+
 }

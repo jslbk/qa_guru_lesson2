@@ -14,7 +14,6 @@ public class StudentRegistrationFormTest extends TestBase {
     STUDENT_EMAIL = "name@name.com",
     STUDENT_GENDER = "Male",
     STUDENT_PHONE = "0123456789",
-    STUDENT_BIRTHDAY = "20.10.1994",
     STUDENT_SUBJECT = "Math",
     STUDENT_HOBBY = "Reading",
     IMAGE_NAME = "picture.jpg",
@@ -31,19 +30,18 @@ public class StudentRegistrationFormTest extends TestBase {
 
     @Test
     void submitStudentRegistrationFormTest() {
-        // Fill all the fields of the student registration form and check form can be submitted
+        // Fill all the fields of the student registration form and check result table automatically displayed
         registrationPage.setFirstName(STUDENT_NAME)
                 .setLastName(STUDENT_SURNAME)
                 .setEmail(STUDENT_EMAIL)
                 .setGender(STUDENT_GENDER)
                 .setPhoneNumber(STUDENT_PHONE)
-                .setDateOfBirth(STUDENT_BIRTHDAY)
+                .setDateOfBirth()
                 .setSubjects(STUDENT_SUBJECT)
                 .setHobbies(STUDENT_HOBBY)
                 .uploadFile(IMAGE_NAME)
                 .setAddress(STUDENT_ADDRESS)
-                .selectStateFromDropdown(STUDENT_STATE, STUDENT_CITY)
-                .clickSubmitButton();
+                .selectStateFromDropdown(STUDENT_STATE, STUDENT_CITY);
 
         registrationPage.checkResultTableIsDisplayed();
     }
