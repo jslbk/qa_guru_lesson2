@@ -8,18 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StudentRegistrationFormTest extends TestBase {
 
     StudentRegistrationFormPage registrationPage = new StudentRegistrationFormPage();
-
     private static final String STUDENT_NAME = "Name",
-    STUDENT_SURNAME = "Surname",
-    STUDENT_EMAIL = "name@name.com",
-    STUDENT_GENDER = "Male",
-    STUDENT_PHONE = "0123456789",
-    STUDENT_SUBJECT = "Math",
-    STUDENT_HOBBY = "Reading",
-    IMAGE_NAME = "picture.jpg",
-    STUDENT_ADDRESS = "Address, 1/22-333",
-    STUDENT_STATE = "Uttar Pradesh",
-    STUDENT_CITY = "Merrut";
+            STUDENT_SURNAME = "Surname",
+            STUDENT_EMAIL = "name@name.com",
+            STUDENT_GENDER = "Male",
+            STUDENT_PHONE = "0123456789",
+            STUDENT_SUBJECT = "Math",
+            STUDENT_HOBBY = "Reading",
+            IMAGE_NAME = "picture.jpg",
+            STUDENT_ADDRESS = "Address, 1/22-333",
+            STUDENT_STATE = "Uttar Pradesh",
+            STUDENT_CITY = "Merrut";
 
 
     @BeforeEach
@@ -36,7 +35,7 @@ public class StudentRegistrationFormTest extends TestBase {
                 .setEmail(STUDENT_EMAIL)
                 .setGender(STUDENT_GENDER)
                 .setPhoneNumber(STUDENT_PHONE)
-                .setDateOfBirth()
+                .setDateOfBirth("1994", "October", "20")
                 .setSubjects(STUDENT_SUBJECT)
                 .setHobbies(STUDENT_HOBBY)
                 .uploadFile(IMAGE_NAME)

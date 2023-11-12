@@ -10,10 +10,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class StudentRegistrationFormPage {
-
-    private static final String BIRTHDAY_YEAR = "1994";
-    private static final String BIRTHDAY_MONTH = "October";
-    private static final String BIRTHDAY_DAY = "20";
     private final SelenideElement
 
             firstNameLocator = $("#firstName"),
@@ -75,10 +71,10 @@ public class StudentRegistrationFormPage {
         return this;
     }
 
-    public StudentRegistrationFormPage setDateOfBirth() {
+    public StudentRegistrationFormPage setDateOfBirth(String year, String month, String day) {
         // Click the date input field to open the date picker
         $(dateInputLocator).click();
-        calendarComponent.setDate(BIRTHDAY_YEAR, BIRTHDAY_MONTH, BIRTHDAY_DAY);
+        calendarComponent.setDate(year, month, day);
 
         return this;
     }
