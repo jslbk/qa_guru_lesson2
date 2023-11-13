@@ -1,25 +1,25 @@
 package tests;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static utils.RandomUtils.*;
 
 public class StudentRegistrationFormTest extends TestBase {
-
     StudentRegistrationFormPage registrationPage = new StudentRegistrationFormPage();
-    private static final String STUDENT_NAME = "Name",
-            STUDENT_SURNAME = "Surname",
-            STUDENT_EMAIL = "name@name.com",
-            STUDENT_GENDER = "Male",
-            STUDENT_PHONE = "0123456789",
-            STUDENT_SUBJECT = "Math",
-            STUDENT_HOBBY = "Reading",
+    private final String STUDENT_NAME = getRandomName(),
+            STUDENT_SURNAME = getRandomSurname(),
+            STUDENT_EMAIL = getRandomEmail(),
+            STUDENT_GENDER = getRandomGenderFromArray(),
+            STUDENT_PHONE = getRandomPhone(),
+            STUDENT_SUBJECT = getRandomSubjectFromArray(),
+            STUDENT_HOBBY = getRandomHobbyFromArray(),
             IMAGE_NAME = "picture.jpg",
-            STUDENT_ADDRESS = "Address, 1/22-333",
-            STUDENT_STATE = "Uttar Pradesh",
-            STUDENT_CITY = "Merrut";
-
+            STUDENT_ADDRESS = getRandomAddress(),
+            STUDENT_STATE = getRandomStateFromArray(),
+            STUDENT_CITY = getRandomCityFromArray();
 
     @BeforeEach
     void openRegistrationFormAndRemoveBanners() {
