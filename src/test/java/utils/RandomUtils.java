@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomUtils {
     static Faker faker = new Faker();
     public static String getRandomString() {
-        String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        String CHARS = "abcdefghijklmnopqrstuvwxyz1234567890";
         StringBuilder string = new StringBuilder();
         Random random = new Random();
         while (string.length() == 10) { // length of the random string.
@@ -67,7 +67,7 @@ public class RandomUtils {
     }
 
     public static String getRandomPhone() {
-        return faker.phoneNumber().toString();
+        return faker.phoneNumber().subscriberNumber(10);
     }
 
     public static String getRandomAddress() {
