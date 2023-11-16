@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultTableComponent;
 import pages.components.UploadFileComponent;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -30,6 +31,7 @@ public class StudentRegistrationFormPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
     UploadFileComponent uploadFileComponent = new UploadFileComponent();
+    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     public StudentRegistrationFormPage setFirstName(String name) {
         firstNameLocator.setValue(name);
@@ -56,11 +58,13 @@ public class StudentRegistrationFormPage {
         return this;
     }
 
-    public StudentRegistrationFormPage selectStateFromDropdown(String state, String city) {
+    public StudentRegistrationFormPage selectStateAndCityFromDropdown(String state, String city) {
         stateLocator.click();
         stateInputLocator.setValue(state).pressEnter();
+
         cityLocator.click();
         cityInputLocator.setValue(city).pressEnter();
+
 
         return this;
     }
