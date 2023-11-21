@@ -4,19 +4,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 import pages.components.ResultTableComponent;
-
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import utils.TestData;
 
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static utils.RandomUtils.*;
 
 public class StudentRegistrationFormTest extends TestBase {
     StudentRegistrationFormPage registrationPage = new StudentRegistrationFormPage();
     ResultTableComponent resultTableComponent = new ResultTableComponent();
-    public static final String IMAGE_NAME = "picture.jpg";
+    TestData testData = new TestData();
 
     @BeforeEach
     void openRegistrationFormAndRemoveBanners() {
@@ -26,47 +22,46 @@ public class StudentRegistrationFormTest extends TestBase {
 
     @Test
     void submitStudentRegistrationFormTest() {
-        // Fill all the fields of the student registration form and check result table automatically displayed
-        registrationPage.setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender(gender)
-                .setPhoneNumber(userPhone)
-                .setDateOfBirth(year, month, String.valueOf(day))
-                .setSubjects(subject)
-                .setHobbies(hobby)
-                .uploadFile(IMAGE_NAME)
-                .setAddress(address)
-                .selectStateAndCityFromDropdown(state, city);
+        registrationPage.setFirstName(testData.name)
+                .setLastName(testData.surname)
+                .setEmail(testData.email)
+                .setGender(testData.gender)
+                .setPhoneNumber(testData.phone)
+                .setDateOfBirth(testData.day, testData.month, testData.year)
+                .setSubjects(testData.subject)
+                .setHobbies(testData.hobby)
+                .uploadFile(testData.image)
+                .setAddress(testData.address)
+                .selectStateAndCityFromDropdown(testData.state, testData.city);
         registrationPage.checkResultTableIsDisplayed();
-        resultTableComponent.checkResult("Student Name", firstName + "\n" + lastName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", userPhone)
-                .checkResult("Date of Birth", format("%02d", day) + "\n" + month + "," + year)
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobby)
-                .checkResult("Picture", IMAGE_NAME)
-                .checkResult("Address", address)
-                .checkResult("State and City", "");
+        resultTableComponent.checkResult("Student Name", testData.name + "\n" + testData.surname)
+                .checkResult("Student Email", testData.email)
+                .checkResult("Gender", testData.gender)
+                .checkResult("Mobile", testData.phone)
+                .checkResult("Date of Birth", format("%02d", testData.day)
+                        + "\n" + testData.month + "," + testData.year)
+                .checkResult("Subjects", testData.subject)
+                .checkResult("Hobbies", testData.hobby)
+                .checkResult("Picture", testData.image)
+                .checkResult("Address", testData.address)
+                .checkResult("State and City",testData.state + "\n" + testData.city);
     }
 
     @Test
     void submitStudentRegistrationFormWithOnlyRequiredDataTest() {
-        // Fill all the required fields of the student registration form and check form can be submitted
         registrationPage
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender(gender)
-                .setPhoneNumber(userPhone)
+                .setFirstName(testData.name)
+                .setLastName(testData.surname)
+                .setEmail(testData.email)
+                .setGender(testData.gender)
+                .setPhoneNumber(testData.phone)
                 .clickSubmitButton();
         registrationPage.checkResultTableIsDisplayed();
-        resultTableComponent.checkResult("Student Name", firstName + "\n" + lastName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", userPhone)
-                .checkResult("Date of Birth", today)
+        resultTableComponent.checkResult("Student Name", testData.name + "\n" + testData.surname)
+                .checkResult("Student Email", testData.email)
+                .checkResult("Gender", testData.gender)
+                .checkResult("Mobile", testData.phone)
+                .checkResult("Date of Birth", testData.today)
                 .checkResult("Subjects", "")
                 .checkResult("Hobbies", "")
                 .checkResult("Picture", "")

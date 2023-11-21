@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
-import pages.components.ResultTableComponent;
 import pages.components.UploadFileComponent;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -31,7 +30,6 @@ public class StudentRegistrationFormPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
     UploadFileComponent uploadFileComponent = new UploadFileComponent();
-    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     public StudentRegistrationFormPage setFirstName(String name) {
         firstNameLocator.setValue(name);
@@ -77,7 +75,7 @@ public class StudentRegistrationFormPage {
 
     public StudentRegistrationFormPage setDateOfBirth(String year, String month, String day) {
         // Click the date input field to open the date picker
-        $(dateInputLocator).click();
+        dateInputLocator.click();
         calendarComponent.setDate(year, month, day);
 
         return this;

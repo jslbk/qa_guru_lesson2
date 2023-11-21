@@ -2,66 +2,49 @@ package utils;
 
 import com.github.javafaker.Faker;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Locale;
 
 public class RandomUtils {
     static Faker faker = new Faker();
 
-    public static String firstName = getRandomName(),
-            lastName = getRandomSurname(),
-            userEmail = getRandomEmail(),
-            gender = getRandomGenderFromArray(),
-            userPhone = getRandomPhone(),
-            month = getRandomMonth(),
-            year = String.valueOf(getRandomYear()),
-            subject = getRandomSubjectFromArray(),
-            hobby = getRandomHobbyFromArray(),
-            address = getRandomAddress(),
-            state = getRandomStateFromArray(),
-            city = getRandomCityOption(state),
-            today = getTodayDate();
-    public static int day = getRandomDay();
-
-    private static String getTodayDate() {
+    public static String getTodayDate() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM,yyyy", Locale.ENGLISH);
 
         return date.format(formatter);
     }
 
-    public static int getRandomIntBetween(int min, int max) {
-        return faker.number().numberBetween(min, max);
+    public static String getRandomIntBetween(int min, int max) {
+        return String.valueOf(faker.number().numberBetween(min, max));
     }
 
     public static String getRandomGenderFromArray() {
         String[] genders = {"Male", "Female", "Other"};
 
-        return gerRandomItem(genders);
+        return getRandomOption(genders);
     }
 
-    public static int getRandomYear() {
-        return getRandomIntBetween(1990, 2015);
+    public static String getRandomYear(int min, int max) {
+        return getRandomIntBetween(min, max);
     }
 
-    public static int getRandomDay() {
-        return getRandomIntBetween(1, 9);
+    public static String getRandomDay(int min, int max) {
+        return getRandomIntBetween(min, max);
     }
 
     public static String getRandomMonth() {
         String[] months = {"January", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"};
 
-        return gerRandomItem(months);
+        return getRandomOption(months);
     }
 
     public static String getRandomStateFromArray() {
         String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
 
-        return gerRandomItem(states);
+        return getRandomOption(states);
     }
 
     public static String getRandomCityOption(String state) {
@@ -88,7 +71,7 @@ public class RandomUtils {
     public static String getRandomHobbyFromArray() {
         String[] hobbies = {"Sports", "Reading", "Music"};
 
-        return gerRandomItem(hobbies);
+        return getRandomOption(hobbies);
     }
 
     public static String getRandomName() {
@@ -103,17 +86,11 @@ public class RandomUtils {
         return faker.internet().emailAddress();
     }
 
-    public static String getRandomPhone() {
-        return faker.phoneNumber().subscriberNumber(10);
+    public static String getRandomPhone(int length) {
+        return faker.phoneNumber().subscriberNumber(length);
     }
 
     public static String getRandomAddress() {
         return faker.address().fullAddress();
-    }
-
-    public static String gerRandomItem(String[] array) {
-        int i = getRandomIntBetween(0, array.length - 1);
-
-        return array[i];
     }
 }
