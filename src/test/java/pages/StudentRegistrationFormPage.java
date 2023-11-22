@@ -23,10 +23,8 @@ public class StudentRegistrationFormPage {
             dateInputLocator = $("#dateOfBirthInput"),
             subjectLocator = $("#subjectsContainer"),
             subjectInputLocator = $(".subjects-auto-complete__input input"),
-            stateLocator = $("#state"),
             stateInputLocator = $("#state input"),
-            cityLocator = $("#city"),
-            cityInputLocator = $("#state input");
+            cityInputLocator = $("#city input");
 
     CalendarComponent calendarComponent = new CalendarComponent();
     UploadFileComponent uploadFileComponent = new UploadFileComponent();
@@ -56,13 +54,14 @@ public class StudentRegistrationFormPage {
         return this;
     }
 
-    public StudentRegistrationFormPage selectStateAndCityFromDropdown(String state, String city) {
-        stateLocator.click();
+    public StudentRegistrationFormPage setState(String state) {
         stateInputLocator.setValue(state).pressEnter();
 
-        cityLocator.click();
-        cityInputLocator.setValue(city).pressEnter();
+        return this;
+    }
 
+    public  StudentRegistrationFormPage setCity(String city) {
+        cityInputLocator.setValue(city).pressEnter();
 
         return this;
     }

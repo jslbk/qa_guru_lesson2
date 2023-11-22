@@ -27,18 +27,21 @@ public class StudentRegistrationFormTest extends TestBase {
                 .setEmail(testData.email)
                 .setGender(testData.gender)
                 .setPhoneNumber(testData.phone)
-                .setDateOfBirth(testData.day, testData.month, testData.year)
+                .setDateOfBirth(testData.year, testData.month, testData.day)
                 .setSubjects(testData.subject)
                 .setHobbies(testData.hobby)
                 .uploadFile(testData.image)
                 .setAddress(testData.address)
-                .selectStateAndCityFromDropdown(testData.state, testData.city);
+                .setState(testData.state)
+                .setCity(testData.city)
+                .clickSubmitButton();
         registrationPage.checkResultTableIsDisplayed();
+
         resultTableComponent.checkResult("Student Name", testData.name + "\n" + testData.surname)
                 .checkResult("Student Email", testData.email)
                 .checkResult("Gender", testData.gender)
                 .checkResult("Mobile", testData.phone)
-                .checkResult("Date of Birth", format("%02d", testData.day)
+                .checkResult("Date of Birth", format("%02d", Integer.parseInt(testData.day))
                         + "\n" + testData.month + "," + testData.year)
                 .checkResult("Subjects", testData.subject)
                 .checkResult("Hobbies", testData.hobby)
@@ -57,6 +60,7 @@ public class StudentRegistrationFormTest extends TestBase {
                 .setPhoneNumber(testData.phone)
                 .clickSubmitButton();
         registrationPage.checkResultTableIsDisplayed();
+
         resultTableComponent.checkResult("Student Name", testData.name + "\n" + testData.surname)
                 .checkResult("Student Email", testData.email)
                 .checkResult("Gender", testData.gender)

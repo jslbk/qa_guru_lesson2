@@ -47,14 +47,18 @@ public class RandomUtils {
         return getRandomOption(states);
     }
 
-    public static String getRandomCityOption(String state) {
-        return switch (state) {
-            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
-            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
-            case "Haryana" -> faker.options().option("Karnal", "Panipat");
-            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
-            default -> state;
-        };
+    public static String setRandomCityDependingOnState(String state) {
+        if ("NCR".equals(state)) {
+            return faker.options().option("Delhi", "Gurgaon", "Noida");
+        } else if ("Uttar Pradesh".equals(state)) {
+            return faker.options().option("Agra", "Lucknow", "Merrut");
+        } else if ("Haryana".equals(state)) {
+            return faker.options().option("Karnal", "Panipat");
+        } else if ("Rajasthan".equals(state)) {
+            return faker.options().option("Jaipur", "Jaiselmer");
+        } else {
+            return state;
+        }
     }
 
     public static String getRandomSubjectFromArray() {
