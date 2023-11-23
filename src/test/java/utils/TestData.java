@@ -1,7 +1,9 @@
 package utils;
 
 import com.github.javafaker.Faker;
+import pages.components.ResultTableComponent;
 
+import static java.lang.String.format;
 import static utils.RandomUtils.*;
 
 public class TestData {
@@ -20,7 +22,9 @@ public class TestData {
             state = getRandomStateFromArray(),
             city = setRandomCityDependingOnState(state),
             image = "picture.jpg",
-            today = getTodayDate();
-
+            today = getTodayDate(),
+            birthday = getFullBirthdayValue(day, month, year);
 }
+
+
 

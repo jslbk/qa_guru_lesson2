@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import static java.lang.String.format;
+
 public class RandomUtils {
     static Faker faker = new Faker();
 
@@ -14,6 +16,10 @@ public class RandomUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM,yyyy", Locale.ENGLISH);
 
         return date.format(formatter);
+    }
+
+    public static String getFullBirthdayValue(String day, String month, String year) {
+        return format("%02d", Integer.parseInt(day)) + "\n" + month + "," + year;
     }
 
     public static String getRandomIntBetween(int min, int max) {

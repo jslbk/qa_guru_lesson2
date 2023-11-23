@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
+import pages.components.CalendarComponent;
 import pages.components.ResultTableComponent;
 import utils.TestData;
 
@@ -41,8 +42,7 @@ public class StudentRegistrationFormTest extends TestBase {
                 .checkResult("Student Email", testData.email)
                 .checkResult("Gender", testData.gender)
                 .checkResult("Mobile", testData.phone)
-                .checkResult("Date of Birth", format("%02d", Integer.parseInt(testData.day))
-                        + "\n" + testData.month + "," + testData.year)
+                .checkResult("Date of Birth", testData.birthday)
                 .checkResult("Subjects", testData.subject)
                 .checkResult("Hobbies", testData.hobby)
                 .checkResult("Picture", testData.image)
