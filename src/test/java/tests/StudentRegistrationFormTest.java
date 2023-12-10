@@ -3,11 +3,9 @@ package tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
-import pages.components.CalendarComponent;
 import pages.components.ResultTableComponent;
 import utils.TestData;
 
-import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StudentRegistrationFormTest extends TestBase {
