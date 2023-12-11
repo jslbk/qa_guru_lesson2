@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
@@ -15,11 +16,15 @@ public class StudentRegistrationFormTest extends TestBase {
     ResultTableComponent resultTableComponent = new ResultTableComponent();
     TestData testData = new TestData();
 
-    @Test
-    void submitStudentRegistrationFormTest() {
+    @BeforeEach
+    void openRegistrationFormAndRemoveBanners() {
         step("Open student registration form", () -> {
             registrationPage.openRegistrationFormPage();
         });
+    }
+
+    @Test
+    void submitStudentRegistrationFormTest() {
         step("Fill student registration form", () -> {
             registrationPage.setFirstName(testData.name)
                     .setLastName(testData.surname)
@@ -48,15 +53,12 @@ public class StudentRegistrationFormTest extends TestBase {
                     .checkResult("Hobbies", testData.hobby)
                     .checkResult("Picture", testData.image)
                     .checkResult("Address", testData.address)
-                    .checkResult("State and City", testData.state + "\n" + testData.city);
+                    .checkResult("State and City",testData.state + "\n" + testData.city);
         });
     }
 
     @Test
     void submitStudentRegistrationFormWithOnlyRequiredDataTest() {
-        step("Open student registration form", () -> {
-            registrationPage.openRegistrationFormPage();
-        });
         step("Fill student registration form", () -> {
             registrationPage
                     .setFirstName(testData.name)
@@ -85,9 +87,6 @@ public class StudentRegistrationFormTest extends TestBase {
 
     @Test
     void submitStudentRegistrationFormWithNegativeTest() {
-        step("Open student registration form", () -> {
-            registrationPage.openRegistrationFormPage();
-        });
         step("Submit student registration form", () -> {
             registrationPage.clickSubmitButton();
         });

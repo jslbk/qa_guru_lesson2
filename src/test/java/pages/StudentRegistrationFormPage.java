@@ -62,7 +62,7 @@ public class StudentRegistrationFormPage {
         return this;
     }
 
-    public  StudentRegistrationFormPage setCity(String city) {
+    public StudentRegistrationFormPage setCity(String city) {
         cityInputLocator.setValue(city).pressEnter();
 
         return this;
@@ -87,6 +87,7 @@ public class StudentRegistrationFormPage {
 
         return this;
     }
+
     public void openRegistrationFormPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
