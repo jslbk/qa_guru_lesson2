@@ -5,13 +5,13 @@ plugins {
 
 allure {
     report {
-        version.set("2.24.0")
+        version.set("2.24.1")
     }
-    adapter { // responsible for the 'allure-results' folder creation with test data in JSON
-        aspectjWeaver.set(true) // responsible fro the annotation @Step processing
+    adapter {
+        aspectjWeaver.set(true)
         frameworks {
-            junit5 { // test framework name
-                adapterVersion.set("2.24.0") // test framework and allure version
+            junit5 {
+                adapterVersion.set("2.24.0")
             }
         }
     }
@@ -23,22 +23,18 @@ repositories {
 
 dependencies {
     testImplementation(
-            'com.codeborne:selenide:7.0.2',
-            'org.junit.jupiter:junit-jupiter:5.10.0',
+            "com.codeborne:selenide:6.19.1",
+            "org.junit.jupiter:junit-jupiter:5.10.0",
             'org.slf4j:slf4j-simple:2.0.7',
-            'com.github.javafaker:javafaker:1.0.2'
+            'com.github.javafaker:javafaker:1.0.2',
+            'io.qameta.allure:allure-selenide:2.24.0'
+
     )
 }
 
-tasks.withType(Test) {
+test {
     useJUnitPlatform()
-
-    testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard-error", "standard-out"
-            exceptionFormat "short"
-        }
-    }
+    systemProperties(System.getProperties())
 }
 
 task simple_test(type: Test) {
