@@ -28,7 +28,6 @@ dependencies {
             'org.slf4j:slf4j-simple:2.0.7',
             'com.github.javafaker:javafaker:1.0.2',
             'io.qameta.allure:allure-selenide:2.24.0'
-
     )
 }
 
@@ -37,8 +36,8 @@ test {
     systemProperties(System.getProperties())
 }
 
-task simple_test(type: Test) {
+task demotag(type: Test) {
     useJUnitPlatform {
-        includeTags("simple")
+        includeTags("demotag")
     }
 }
