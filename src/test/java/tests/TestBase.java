@@ -21,8 +21,10 @@ public class TestBase {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "120.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.pageLoadStrategy = "eager";
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
@@ -41,8 +43,6 @@ public class TestBase {
 
     @AfterAll
     public static void close() {
-        Selenide.clearBrowserCookies();
-        Selenide.clearBrowserLocalStorage();
         Selenide.closeWebDriver();
     }
 
