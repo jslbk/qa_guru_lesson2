@@ -4,7 +4,7 @@ plugins {
 }
 
 def allureVersion = "2.21.0",
-    selenideVersion = "6.19.1"
+    selenideVersion = "7.0.2"
 
 allure {
     report {
